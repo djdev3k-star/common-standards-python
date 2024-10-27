@@ -11,6 +11,39 @@
     <div class="container mt-5">
         <h1>Educational Standards Viewer</h1>
 
+        <!-- Search Form for Jurisdictions -->
+        <div class="mb-4">
+            <form action="{{ url_for('search_jurisdictions') }}" method="get">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="q" placeholder="Search Jurisdictions" required>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+        <!-- Jurisdiction Search Results -->
+        {% if jurisdictions %}
+        <h2>Matching Jurisdictions</h2>
+        <ul class="list-group mb-4">
+            {% for jurisdiction in jurisdictions %}
+            <li class="list-group-item">
+                <strong>{{ jurisdiction.title }}</strong> - {{ jurisdiction.type }}
+                <br>
+                <em>Standard Sets:</em>
+                <ul>
+                    {% for standard_set in jurisdiction.standardSets %}
+                    <li>{{ standard_set.title }} - {{ standard_set.subject }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <!-- Standard Sets Section -->
         <h2>Standard Sets</h2>
         <ul class="list-group">
             {% for standard_set in standard_sets %}

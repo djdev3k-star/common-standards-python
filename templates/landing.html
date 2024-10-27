@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educational Standards Viewer - Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1>Welcome to the Educational Standards Viewer</h1>
+        <p>This application allows you to browse and search educational standards by jurisdiction and subject. Use the links below to get started:</p>
+        
+        <div class="list-group">
+            <a href="{{ url_for('main.search_jurisdictions') }}" class="list-group-item list-group-item-action">
+                🔍 Search Jurisdictions
+            </a>
+            <a href="{{ url_for('standards.fetch_standard_details', standard_set_id='sample-id') }}" class="list-group-item list-group-item-action">
+                📘 View Standards (Example)
+            </a>
+        </div>
+        
+        <div class="alert alert-info mt-4">
+            <strong>Note:</strong> Click "Search Jurisdictions" to start searching by jurisdiction, or "View Standards" to see example standards.
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

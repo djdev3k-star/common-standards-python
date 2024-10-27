@@ -1,0 +1,11 @@
+project/
+│
+├── app.py                  # Main file that initializes the Flask app and registers blueprints
+├── main_routes.py          # Routes for the main pages, including the landing page and search
+├── standards_routes.py     # Routes for standards-related pages
+├── api_service.py          # All API-related functions
+└── templates/
+    ├── landing.html        # New landing page template
+    ├── index.html          # Search page template
+    ├── search_results.html # Template to display search results
+    └── standards.html      # Standards detail page template
