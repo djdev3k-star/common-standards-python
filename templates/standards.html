@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ standard_set_title }} - Standards</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>{{ standard_set_title }} - Standards</h1>
+
+        {% if standards %}
+        {% for standard in standards %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <p><strong>Standard ID:</strong> {{ standard.id }}</p>
+                <p><strong>Notation:</strong> {{ standard.statementNotation }}</p>
+                <p><strong>Description:</strong> {{ standard.description }}</p>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="alert alert-warning">No standards available for this set.</div>
+        {% endif %}
+
+        {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+        {% endif %}
+    </div>
+</body>
+
+</html>
