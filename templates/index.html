@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Educational Standards Viewer</title>
+</head>
+
+<body>
+    <h1>Educational Standards Viewer</h1>
+
+    <h2>Standard Sets</h2>
+    <ul>
+        {% for standard_set in standard_sets %}
+        <li>
+            <strong>{{ standard_set.title }}</strong> - {{ standard_set.subject }}
+            <button onclick="fetchStandardDetails('{{ standard_set.id }}')">View Standards</button>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Standards Details</h2>
+    <div id="standards-details">
+        <p>Select a standard set to view details.</p>
+    </div>
+
+    <script>
+        // Function to fetch and display details for the selected standard set
+        function fetchStandardDetails(standardSetId) {
+            fetch(`/standard/${standardSetId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const detailsDiv = document.getElementById("standards-details");
+                    detailsDiv.innerHTML = ""; // Clear previous data
+
+                    if (data.error) {
+                        detailsDiv.innerHTML = `<p>${data.error}</p>`;
+                    } else {
+                        data.standards.forEach(standard => {
+                            const standardEl = document.createElement("div");
+                            standardEl.innerHTML = `
+                                <p><strong>Standard ID:</strong> ${standard.id}</p>
+                                <p><strong>Description:</strong> ${standard.description}</p>
+                                <hr>
+                            `;
+                            detailsDiv.appendChild(standardEl);
+                        });
+                    }
+                })
+                .catch(error => {
+                    const detailsDiv = document.getElementById("standards-details");
+                    detailsDiv.innerHTML = `<p>An error occurred: ${error}</p>`;
+                });
+        }
+    </script>
+</body>
+
+</html>
