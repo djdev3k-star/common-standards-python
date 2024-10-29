@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 # Register blueprints
 app.register_blueprint(main_bp)
-app.register_blueprint(standards_bp)
+app.register_blueprint(standards_bp, url_prefix='/standards')
 
 if __name__ == "__main__":
     app.run(debug=True)
