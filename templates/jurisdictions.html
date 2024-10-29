@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Jurisdictions</h2>
+<form method="get" action="{{ url_for('jurisdictions.jurisdictions_home') }}">
+    <input type="text" name="search" placeholder="Search for a jurisdiction">
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+<ul class="list-group mt-4">
+    {% for jurisdiction in jurisdictions %}
+    <li class="list-group-item">
+        <strong>{{ jurisdiction.title }}</strong> - {{ jurisdiction.type }}
+        <a href="{{ url_for('jurisdictions.view_jurisdiction', jurisdiction_id=jurisdiction.id) }}"
+            class="btn btn-info">View Standard Sets</a>
+    </li>
+    {% endfor %}
+</ul>
+
+{% if not jurisdictions %}
+<div class="alert alert-warning mt-4">No jurisdictions found.</div>
+{% endif %}
+{% endblock %}
