@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="alert alert-warning">
+        <h4 class="alert-heading">404 - Not Found</h4>
+        <p>The requested resource could not be found.</p>
+        <hr>
+        <p class="mb-0">
+            <a href="{{ url_for('main.index') }}" class="alert-link">Return to Home</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

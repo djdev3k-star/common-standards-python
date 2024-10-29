@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url_for('main.landing_page') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ url_for('jurisdictions.jurisdictions_home') }}">Jurisdictions</a>
+            </li>
+            <li class="breadcrumb-item active">{{ standard_set.title }}</li>
+        </ol>
+    </nav>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <h2>{{ standard_set.title }}</h2>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Subject:</strong> {{ standard_set.subject }}</p>
+                    <p><strong>Jurisdiction:</strong> {{ standard_set.jurisdiction }}</p>
+                </div>
+                {% if standard_set.license %}
+                <div class="col-md-6">
+                    <p><strong>License:</strong>
+                        <a href="{{ standard_set.license.URL }}" target="_blank">
+                            {{ standard_set.license.title }}
+                        </a>
+                    </p>
+                    <p><strong>Rights Holder:</strong> {{ standard_set.license.rightsHolder }}</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="standards-container">
+        <h3>Standards</h3>
+        <div class="list-group">
+            {% for standard in standards %}
+            <div class="list-group-item">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{ standard.statementNotation }}</h5>
+                    <small>Depth: {{ standard.depth }}</small>
+                </div>
+                <p class="mb-1">{{ standard.description }}</p>
+                {% if standard.ancestorIds %}
+                <small class="text-muted">
+                    Parent Standards: {{ standard.ancestorIds|join(', ') }}
+                </small>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

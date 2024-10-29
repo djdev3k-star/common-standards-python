@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Standard Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1>Standard Details</h1>
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">{{ standard.title }}</h3>
+                <p class="card-text"><strong>Statement Notation:</strong> {{ standard.statementNotation }}</p>
+                <p class="card-text"><strong>Description:</strong> {{ standard.description }}</p>
+
+                <!-- Add more fields as needed -->
+
+                <a href="{{ url_for('jurisdiction.view_jurisdiction', standard_set_id=standard.standardSetId) }}"
+                    class="btn btn-primary">Back to Standard Set</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
