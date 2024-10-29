@@ -1,34 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>{{ standard_set_title }} - Standards</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
+{% block content %}
+<h2>{{ standard_set.title }}</h2>
+<p>{{ standard_set.subject }}</p>
 
-<body>
-    <div class="container">
-        <h1>{{ standard_set_title }} - Standards</h1>
+<ul class="list-group mt-4">
+    {% for standard in standards %}
+    <li class="list-group-item">
+        <strong>{{ standard.statementNotation }}</strong> - {{ standard.description }}
+    </li>
+    {% endfor %}
+</ul>
 
-        {% if standards %}
-        {% for standard in standards %}
-        <div class="card mb-3">
-            <div class="card-body">
-                <p><strong>Standard ID:</strong> {{ standard.id }}</p>
-                <p><strong>Notation:</strong> {{ standard.statementNotation }}</p>
-                <p><strong>Description:</strong> {{ standard.description }}</p>
-            </div>
-        </div>
-        {% endfor %}
-        {% else %}
-        <div class="alert alert-warning">No standards available for this set.</div>
-        {% endif %}
-
-        {% if error %}
-        <div class="alert alert-danger">{{ error }}</div>
-        {% endif %}
-    </div>
-</body>
-
-</html>
+{% if not standards %}
+<div class="alert alert-warning mt-4">No standards found for this set.</div>
+{% endif %}
+{% endblock %}

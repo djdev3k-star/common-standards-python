@@ -1,61 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Jurisdictions</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
-</head>
+{% block content %}
+<h2>Jurisdictions</h2>
+<form method="get" action="{{ url_for('jurisdictions.jurisdictions_home') }}">
+    <input type="text" name="search" placeholder="Search for a jurisdiction">
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
 
-<body>
-    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">Educational Standards</a>
-    </nav>
+<ul class="list-group mt-4">
+    {% for jurisdiction in jurisdictions %}
+    <li class="list-group-item">
+        <strong>{{ jurisdiction.title }}</strong> - {{ jurisdiction.type }}
+        <a href="{{ url_for('jurisdictions.view_jurisdiction', jurisdiction_id=jurisdiction.id) }}"
+            class="btn btn-info">View Standard Sets</a>
+    </li>
+    {% endfor %}
+</ul>
 
-    <div class="container-fluid">
-        <div class="row">
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <h2 class="mt-4">Jurisdictions</h2>
-                <div class="accordion" id="jurisdictionsAccordion">
-                    {% for jurisdiction in jurisdictions %}
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="heading{{ jurisdiction.id }}">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse{{ jurisdiction.id }}" aria-expanded="false"
-                                aria-controls="collapse{{ jurisdiction.id }}">
-                                {{ jurisdiction.title }} ({{ jurisdiction.type }})
-                            </button>
-                        </h2>
-                        <div id="collapse{{ jurisdiction.id }}" class="accordion-collapse collapse"
-                            aria-labelledby="heading{{ jurisdiction.id }}" data-bs-parent="#jurisdictionsAccordion">
-                            <div class="accordion-body">
-                                <h5>Standard Sets</h5>
-                                {% if jurisdiction.standardSets %}
-                                <ul class="list-group">
-                                    {% for standard_set in jurisdiction.standardSets %}
-                                    <li class="list-group-item">
-                                        <strong>{{ standard_set.title }}</strong><br>
-                                        <span>Subject: {{ standard_set.subject }}</span><br>
-                                        <span>Education Levels: {{ standard_set.educationLevels | join(", ") }}</span>
-                                    </li>
-                                    {% endfor %}
-                                </ul>
-                                {% else %}
-                                <p>No standard sets available.</p>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </main>
-        </div>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-</body>
-
-</html>
+{% if not jurisdictions %}
+<div class="alert alert-warning mt-4">No jurisdictions found.</div>
+{% endif %}
+{% endblock %}
