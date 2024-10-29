@@ -1,5 +1,5 @@
 # app.py
-from flask import Flask
+from flask import Flask, render_template
 from routes.jurisdiction_routes import jurisdiction_bp
 from routes.standards_routes import standards_bp
 from dotenv import load_dotenv
