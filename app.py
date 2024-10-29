@@ -1,19 +1,26 @@
-import os
+# app.py
 from flask import Flask
-from dotenv import load_dotenv
-
-# Import blueprints
-from routes.main_routes import main_bp
+from routes.jurisdiction_routes import jurisdiction_bp
 from routes.standards_routes import standards_bp
+from dotenv import load_dotenv
+import os
 
-load_dotenv('.env')
-API_KEY = os.getenv('API_KEY')
+# Load environment variables from .env
+load_dotenv()
 
-app = Flask(__name__)
+def create_app():
+    app = Flask(__name__)
 
-# Register blueprints
-app.register_blueprint(main_bp)
-app.register_blueprint(standards_bp, url_prefix='/standards')
+    # Register blueprints
+    app.register_blueprint(jurisdiction_bp, url_prefix='/jurisdictions')
+    app.register_blueprint(standards_bp, url_prefix='/standards')
+
+    @app.route('/')
+    def index():
+        return render_template('index.html')
+
+    return app
 
 if __name__ == "__main__":
+    app = create_app()
     app.run(debug=True)
