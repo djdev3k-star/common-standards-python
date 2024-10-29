@@ -11,7 +11,7 @@
     {% for jurisdiction in jurisdictions %}
     <li class="list-group-item">
         <strong>{{ jurisdiction.title }}</strong> - {{ jurisdiction.type }}
-        <a href="{{ url_for('jurisdictions.view_jurisdiction', jurisdiction_id=jurisdiction.id) }}"
+        <a href="{{ url_for('standards.fetch_standard_details', standard_set_id=jurisdiction.id) }}"
             class="btn btn-info">View Standard Sets</a>
     </li>
     {% endfor %}
