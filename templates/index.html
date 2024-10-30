@@ -1,36 +1,60 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Welcome to the Educational Standards Viewer</h2>
-<p>Use the links below to explore standards by jurisdiction or search for specific standards.</p>
-
 <div class="container mt-5">
-    <h1>Educational Standards Viewer</h1>
+    <h1 class="text-center">Welcome to the Educational Standards Viewer</h1>
+    <p class="text-center">Explore educational standards by jurisdiction, or search for standards within schools and
+        organizations.</p>
 
-    <h2>Jurisdictions</h2>
-    <a href="{{ url_for('jurisdictions.jurisdictions_home') }}" class="btn btn-primary mb-3">View Jurisdictions</a>
-
-    <h2>All Schools and Organizations</h2>
-    <a href="{{ url_for('organizations.schools_and_organizations') }}" class="btn btn-primary mb-3">View All Schools and
-        Organizations</a>
-
-    <!---<h2>Standard Sets</h2>
-    <ul class="list-group">
-        {% for standard_set in standard_sets %}
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            <div>
-                <strong>{{ standard_set.title }}</strong> - {{ standard_set.subject }}
+    <div class="row mt-5">
+        <!-- Jurisdictions Section -->
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h3 class="card-title"><i class="fas fa-map-marked-alt"></i> Jurisdictions</h3>
+                    <p class="card-text">View standards categorized by various jurisdictions, such as states or regions.
+                    </p>
+                    <a href="{{ url_for('jurisdictions.jurisdictions_home') }}" class="btn btn-primary">Explore
+                        Jurisdictions</a>
+                </div>
             </div>
-            <a href="{{ url_for('standards.fetch_standard_details', standard_set_id=standard_set.id) }}"
-                class="btn btn-info">View Standards</a>
-        </li>
-        {% endfor %}
-    </ul> 
+        </div>
 
-    {% if not standard_sets %}
-    <div class="alert alert-warning mt-4">No standard sets available.</div>
-    {% endif %}-->
+        <!-- Schools and Organizations Section -->
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h3 class="card-title"><i class="fas fa-university"></i> Schools and Organizations</h3>
+                    <p class="card-text">Browse educational standards by schools and organizations.</p>
+                    <a href="{{ url_for('organizations.schools_and_organizations') }}" class="btn btn-primary">View All
+                        Schools & Organizations</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional Standard Sets Section 
+    <div class="mt-5">
+        <h2>Standard Sets</h2>
+        <ul class="list-group">
+            {% for standard_set in standard_sets %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                    <strong>{{ standard_set.title }}</strong> - {{ standard_set.subject }}
+                </div>
+                <a href="{{ url_for('standards.fetch_standard_details', standard_set_id=standard_set.id) }}" class="btn btn-info">View Standards</a>
+            </li>
+            {% endfor %}
+        </ul>
+
+        {% if not standard_sets %}
+        <div class="alert alert-warning mt-4">No standard sets available.</div>
+        {% endif %}
+    </div>
+    -->
 </div>
 
+<!-- Include Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 {% endblock %}
