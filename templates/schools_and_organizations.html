@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>All Schools and Organizations</h2>
+
+<h3>Schools</h3>
+{% if schools %}
+<ul class="list-group mt-4">
+    {% for school in schools %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+            <strong>{{ school.title }}</strong>
+        </div>
+        <a href="{{ url_for('jurisdictions.view_jurisdiction', jurisdiction_id=school.id) }}" class="btn btn-info">View
+            Standards</a>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<div class="alert alert-warning mt-4">No schools found.</div>
+{% endif %}
+
+<h3>Organizations</h3>
+{% if organizations %}
+<ul class="list-group mt-4">
+    {% for organization in organizations %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+            <strong>{{ organization.title }}</strong>
+        </div>
+        <a href="{{ url_for('jurisdictions.view_jurisdiction', jurisdiction_id=organization.id) }}"
+            class="btn btn-info">View Standards</a>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<div class="alert alert-warning mt-4">No organizations found.</div>
+{% endif %}
+{% endblock %}

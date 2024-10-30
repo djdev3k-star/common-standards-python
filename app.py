@@ -2,6 +2,8 @@
 from flask import Flask, render_template
 from routes.jurisdiction_routes import jurisdiction_bp
 from routes.standards_routes import standards_bp
+from routes.organizations_routes import organizations_bp  # create this
+
 from dotenv import load_dotenv
 import os
 
@@ -14,7 +16,8 @@ def create_app():
     # Register blueprints
     app.register_blueprint(jurisdiction_bp, url_prefix='/jurisdictions')
     app.register_blueprint(standards_bp, url_prefix='/standards')
-
+    app.register_blueprint(organizations_bp, url_prefix='/organizations')  # Register the new blueprint
+    
     @app.route('/')
     def index():
         return render_template('index.html')
