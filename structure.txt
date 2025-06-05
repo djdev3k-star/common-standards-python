@@ -1,4 +1,4 @@
-your_project/
+project_folder/
 ├── app.py                    # Main application file
 ├── api_service.py            # Helper for external API requests
 ├── routes/
