@@ -1,0 +1,13 @@
+your_project/
+├── app.py                    # Main application file
+├── api_service.py            # Helper for external API requests
+├── routes/
+│   ├── __init__.py           # Initializes the `routes` package
+│   ├── jurisdiction_routes.py # Handles jurisdiction-related routes
+│   └── standards_routes.py    # Handles standards-related routes
+├── templates/
+│   ├── base.html             # Base template for shared layout
+│   ├── index.html            # Landing page template
+│   ├── jurisdictions.html     # Jurisdiction search and result page
+│   └── standards.html         # Standards list for a selected jurisdiction
+└── .env                       # Stores environment variables (API key)

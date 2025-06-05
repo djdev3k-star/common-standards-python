@@ -1,0 +1,22 @@
+__pycache__/
+*.pyc
+*.env
+*.sqlite3
+.DS_Store
+venv/
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+
+# Environment variables
+.env
+
+# Editor folders
+.vscode/
+.idea/
+.surgeignore
